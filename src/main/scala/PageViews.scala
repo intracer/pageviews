@@ -18,13 +18,14 @@ object PageViews {
 
   val (started, fetched) = (new AtomicInteger(0), new AtomicInteger(0))
 
-  def log[T](msg: T) =
+  def logged[T](msg: T): T = {
     logger.info(s"Stat started: ${started.get}, fetched: ${fetched.get}, msg: " + msg)
+    msg
+  }
 
   def fetch[T](url: String)(f: Json => T): Task[T] = {
     started.incrementAndGet()
-    log(url)
-    http.expect[Json](url).map(f)
+    http.expect[Json](logged(url)).map(f)
   }
 
   def encode(s: String) = URLEncoder.encode(s.replace(" ", "_"), "UTF-8")
@@ -85,9 +86,9 @@ object PageViews {
 
     fetch(url) { json =>
       fetched.incrementAndGet()
-      val r = article -> views(json)
-      log(r)
-      r
+      logged(
+        article -> views(json)
+      )
     }.handle { case ex =>
       logger.error(ex)(article)
       article -> 0
