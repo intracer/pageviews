@@ -54,10 +54,10 @@ object PageViews {
           .string.getOption(json)
 
       fetch(url(continue)) { json =>
-        val r = PagesWithContinue(
+        PagesWithContinue(
           parsePages(json),
-          parseContinue(json))
-        r
+          parseContinue(json)
+        )
       }
     }
 
