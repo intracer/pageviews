@@ -7,26 +7,13 @@ import scala.io.Source
 
 object PageViewsMonthly {
 
-  val statBaseUrl = "https://wikimedia.org/api/rest_v1/"
-
-  def statUrl(project: String,
-              article: String,
-              start: String,
-              end: String,
-              access: String = "all-access",
-              agent: String = "all-agents") =
-    statBaseUrl + s"/metrics/pageviews/per-article/$project/$access/$agent/$article/daily/$start/$end"
-
-
   def main(args: Array[String]): Unit = {
-
-    val ammo = fromAmmo
-    println(ammo)
-
+    println(monthlyViews)
   }
 
   case class PV(article: String, views: Int)
-  def fromAmmo = {
+
+  def monthlyViews = {
 
     def getMonthlyViews(project: String, year: Int, month: Int): Map[String, Int] = {
       def url: String = {
@@ -55,6 +42,5 @@ object PageViewsMonthly {
 
     byBook.toSeq.sortBy(-_._2)
   }
-
 }
 
