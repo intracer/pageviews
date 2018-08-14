@@ -4,6 +4,10 @@ import scala.io.Source
 
 case class PageViews(article: String, views: Int)
 
+object PageViewsMonthly { 
+  
+def main(args: Array[String]): Unit = {
+
 def getMonthlyViews(project: String, year: Int, month: Int): Map[String, Int] = {
   def url: String = {
     val monthStr = (if (month < 10) "0" else "") + month
@@ -37,3 +41,5 @@ val wikiTable = byBook.toSeq
   }.mkString("{| class = \"wikitable\"\n|-\n", "\n|-\n", "\n|}")
 
 println(wikiTable)
+}
+}
