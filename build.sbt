@@ -13,5 +13,6 @@ libraryDependencies ++= Seq(
   "io.circe" %% "circe-optics" % circeVersion,
   "org.http4s" %% "http4s-blaze-client" % http4sVersion,
   "org.http4s" %% "http4s-circe" % http4sVersion,
+  "org.typelevel" %% "cats" % "0.8.1",
   "ch.qos.logback" % "logback-classic" % "1.1.3"
 )
