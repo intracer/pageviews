@@ -23,7 +23,10 @@ object PageViewsMonthly {
 
     def sumMapValues(maps: Seq[Map[String, Int]]) = maps.foldLeft(Map.empty[String, Int])(_ |+| _)
 
-    val monthly = (1 to 12).map { month => getMonthlyViews("uk.wikibooks.org", 2016, month) }
+    val monthly = for (year <- 2015 to 2019;
+                       month <- (1 to 12).filter( year > 2015 || _ > 6 ))
+      yield
+       getMonthlyViews("uk.wikipedia.org", year, month)
 
     val yearly = sumMapValues(monthly)
 
