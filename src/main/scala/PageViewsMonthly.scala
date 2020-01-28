@@ -2,8 +2,6 @@ import io.circe._, io.circe.parser._, io.circe.generic.auto._
 import cats.implicits._
 import scala.io.Source
 
-case class PageViews(article: String, views: Int)
-
 object PageViewsMonthly {
 
   def main(args: Array[String]): Unit = {

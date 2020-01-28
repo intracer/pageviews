@@ -9,6 +9,8 @@ import org.http4s.client.blaze._
 import scalaz.concurrent.Task
 import org.log4s.getLogger
 
+case class PageViews(article: String, views: Int)
+
 object PageViews {
   val project = "uk.wikibooks.org"
   val year = 2016
